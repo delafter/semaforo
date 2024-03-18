@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from "react";
 
 const Semaforo = () => {
+  const [color, setColor] = useState("naranja");
 
-const [ color, setColor] = useState("naranja");
+  useEffect(() => {
+    console.log("useEffect usado");
+  }, [color]);
 
-return (
-      <div>
-        <div className='trafficLight'>
-        <button className={`rojo ${color == 'rojo' ? 'on' : ''}`} onClick={() => setColor('rojo')}></button>
-         <button className={`naranja ${color == 'naranja' ? 'on' : ''}`} onClick={() => setColor('naranja')}></button>
-         <button className={`verde ${color =='verde' ? 'on' : ''}`} onClick={() => setColor('verde')}></button>
-        </div>
-        <div className='palo'></div>
+  const handleClick = (newColor) => {
+    console.log(`Botón ${newColor} clickeado`);
+    setColor(newColor);
+  };
+
+  return (
+    <div>
+      <div className="trafficLight">
+        <button
+          className={`rojo ${color == "rojo" ? "on" : ""}`}
+          onClick={() => handleClick("rojo")}
+        ></button>
+        <button
+          className={`naranja ${color == "naranja" ? "on" : ""}`}
+          onClick={() => handleClick("naranja")}
+        ></button>
+        <button
+          className={`verde ${color == "verde" ? "on" : ""}`}
+          onClick={() => handleClick("verde")}
+        ></button>
       </div>
-    );
+      <div className="palo"></div>
+    </div>
+  );
 };
 
 export default Semaforo;
